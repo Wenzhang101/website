@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统 - 客户信息管理</title>
+    <meta name="description" content="北京精恒光辉门窗有限公司后台管理系统">
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- 头部导航 -->
+    <header class="admin-header">
+        <nav class="admin-nav">
+            <div class="admin-logo">
+                <span class="logo-text">精恒光辉</span>
+                <span style="color: #86868b; font-size: 14px;">后台管理系统</span>
+            </div>
+            <div class="admin-user">
+                <div class="user-info">
+                    <div class="user-name" id="current-user">管理员</div>
+                    <div class="user-role">系统管理员</div>
+                </div>
+                <button class="logout-btn" id="logout-btn">
+                    <span>退出登录</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="admin-main">
+        <!-- 客户信息管理面板 -->
+        <div class="admin-panel">
+            <div class="panel-header">
+                <h2>客户信息管理</h2>
+                <div class="panel-actions">
+                    <button class="btn btn-primary" id="refresh-data">
+                        <span>刷新数据</span>
+                    </button>
+                    <button class="btn btn-secondary" id="export-data">
+                        <span>导出数据</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table" id="customer-table">
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>电话</th>
+                            <th>邮箱</th>
+                            <th>咨询类型</th>
+                            <th>咨询时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-table-body">
+                        <!-- 数据将通过JavaScript动态填充 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-footer">
+                <div class="stats">
+                    <span>总计: <span id="total-count">0</span> 条记录</span>
+                </div>
+                <div class="last-update">
+                    <span>最后更新: <span id="last-update-time">-</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据统计面板 -->
+        <div class="admin-panel" style="margin-top: 30px;">
+            <div class="panel-header">
+                <h2>数据统计</h2>
+            </div>
+            <div style="padding: 30px;">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-customers">0</div>
+                        <div class="stat-label">总客户数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="today-customers">0</div>
+                        <div class="stat-label">今日新增</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="window-customers">0</div>
+                        <div class="stat-label">门窗咨询</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="sunroom-customers">0</div>
+                        <div class="stat-label">阳光房咨询</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h3 class="modal-title">客户详情</h3>
+            <div id="modal-body">
+                <!-- 详情内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

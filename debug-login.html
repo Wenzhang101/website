@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试页面</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+        }
+        .test-box {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>调试页面 - 测试CSS和JavaScript</h1>
+
+    <div class="test-box">
+        <h2>测试1: 基本HTML元素</h2>
+        <p>这是一个段落文字</p>
+        <input type="text" placeholder="测试输入框">
+        <button>测试按钮</button>
+    </div>
+
+    <div class="test-box">
+        <h2>测试2: CSS样式</h2>
+        <div class="success">绿色背景 - CSS正常工作</div>
+        <div class="error">红色背景 - CSS正常工作</div>
+    </div>
+
+    <div class="test-box">
+        <h2>测试3: JavaScript</h2>
+        <button onclick="testJS()">点击测试JavaScript</button>
+        <div id="js-result"></div>
+    </div>
+
+    <div class="test-box">
+        <h2>测试4: 文件路径</h2>
+        <p>当前页面: debug-login.html</p>
+        <p>尝试访问: <a href="admin-login-simple.html">admin-login-simple.html</a></p>
+    </div>
+
+    <script>
+        function testJS() {
+            const result = document.getElementById('js-result');
+            result.innerHTML = '<div class="success">JavaScript正常工作！</div>';
+        }
+
+        // 页面加载时自动测试
+        document.addEventListener('DOMContentLoaded', function() {
+            const result = document.getElementById('js-result');
+            result.innerHTML = '<div class="success">页面加载完成，JavaScript已初始化</div>';
+        });
+    </script>
+</body>
+</html>

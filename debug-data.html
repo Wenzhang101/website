@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据调试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background: #0071e3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>数据调试页面</h1>
+        <p>这个页面用于检查localStorage中的数据状态。</p>
+
+        <button class="btn" onclick="checkData()">检查数据</button>
+        <button class="btn" onclick="clearData()">清空数据</button>
+        <button class="btn" onclick="addTestData()">添加测试数据</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function checkData() {
+            const stored = localStorage.getItem('jingheng_customers');
+            const resultDiv = document.getElementById('result');
+
+            if (stored) {
+                const customers = JSON.parse(stored);
+                resultDiv.innerHTML = `
+                    <h3>数据检查结果：</h3>
+                    <p><strong>数据存在，共有 ${customers.length} 条记录</strong></p>
+                    <pre>${JSON.stringify(customers, null, 2)}</pre>
+                `;
+            } else {
+                resultDiv.innerHTML = '<p><strong>没有找到数据</strong></p>';
+            }
+        }
+
+        function clearData() {
+            localStorage.removeItem('jingheng_customers');
+            document.getElementById('result').innerHTML = '<p><strong>数据已清空</strong></p>';
+        }
+
+        function addTestData() {
+            const testCustomers = [
+                {
+                    id: '1',
+                    name: '测试用户1',
+                    phone: '13800138001',
+                    email: 'test1@example.com',
+                    type: '断桥铝门窗',
+                    message: '测试消息1',
+                    timestamp: new Date().toLocaleString('zh-CN')
+                },
+                {
+                    id: '2',
+                    name: '测试用户2',
+                    phone: '13900139002',
+                    email: 'test2@example.com',
+                    type: '阳光房',
+                    message: '测试消息2',
+                    timestamp: new Date().toLocaleString('zh-CN')
+                }
+            ];
+
+            localStorage.setItem('jingheng_customers', JSON.stringify(testCustomers));
+            document.getElementById('result').innerHTML = `<p><strong>测试数据添加成功！共有 ${testCustomers.length} 条记录</strong></p>`;
+        }
+
+        // 页面加载时自动检查数据
+        document.addEventListener('DOMContentLoaded', function() {
+            checkData();
+        });
+    </script>
+</body>
+</html>

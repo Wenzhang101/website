@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统 - 登录</title>
+    <meta name="description" content="北京精恒光辉门窗有限公司后台管理系统">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0071e3;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0071e3;
+        }
+
+        .form-options {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .login-btn:hover {
+            background: #0056b3;
+        }
+
+        .login-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .login-footer {
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .error-message {
+            background: #ff3b30;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .success-message {
+            background: #34c759;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <div class="login-header">
+            <span class="logo-text">精恒光辉</span>
+            <h1 class="login-title">后台管理系统</h1>
+            <p class="login-subtitle">请输入管理员账号和密码</p>
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">管理员账号</label>
+                <input type="text" id="username" placeholder="请输入管理员账号" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">密码</label>
+                <input type="password" id="password" placeholder="请输入密码" required>
+            </div>
+
+            <div class="form-options">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="remember-me">
+                    记住我
+                </label>
+            </div>
+
+            <button type="submit" class="login-btn" id="login-btn">
+                <span class="btn-text">登录</span>
+                <span class="btn-loading" style="display: none;">登录中...</span>
+            </button>
+
+            <div class="loading" id="loading">正在验证...</div>
+
+            <div class="error-message" id="error-message">
+                账号或密码错误，请重新输入
+            </div>
+
+            <div class="success-message" id="success-message">
+                登录成功，正在跳转...
+            </div>
+
+            <div class="login-footer">
+                <p>如有问题请联系系统管理员</p>
+            </div>
+        </form>
+    </div>
+
+    <script src="api-client.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            const loading = document.getElementById('loading');
+            const loginBtn = document.getElementById('login-btn');
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+
+            // 检查是否已登录
+            if (apiClient.isLoggedIn()) {
+                window.location.href = 'admin-new.html';
+                return;
+            }
+
+            // 表单提交事件
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                await handleLogin();
+            });
+
+            // 密码框回车键支持
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleLogin();
+                }
+            });
+
+            async function handleLogin() {
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value;
+
+                // 基本验证
+                if (!username || !password) {
+                    showMessage('请输入用户名和密码', 'error');
+                    return;
+                }
+
+                // 显示加载状态
+                setLoading(true);
+
+                try {
+                    const result = await apiClient.adminLogin(username, password);
+
+                    if (result.success) {
+                        showMessage('登录成功，正在跳转...', 'success');
+
+                        // 延迟跳转，让用户看到成功消息
+                        setTimeout(() => {
+                            window.location.href = 'admin-new.html';
+                        }, 1000);
+                    } else {
+                        showMessage('账号或密码错误', 'error');
+                        document.getElementById('password').value = '';
+                        document.getElementById('password').focus();
+                    }
+                } catch (error) {
+                    console.error('登录错误:', error);
+                    showMessage('登录失败，请检查网络连接', 'error');
+                } finally {
+                    setLoading(false);
+                }
+            }
+
+            function setLoading(loadingState) {
+                if (loadingState) {
+                    loginBtn.disabled = true;
+                    btnText.style.display = 'none';
+                    btnLoading.style.display = 'inline';
+                    loading.style.display = 'block';
+                } else {
+                    loginBtn.disabled = false;
+                    btnText.style.display = 'inline';
+                    btnLoading.style.display = 'none';
+                    loading.style.display = 'none';
+                }
+            }
+
+            function showMessage(message, type = 'error') {
+                // 隐藏所有消息
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+
+                // 显示指定类型的消息
+                if (type === 'success') {
+                    successMessage.textContent = message;
+                    successMessage.style.display = 'block';
+                } else {
+                    errorMessage.textContent = message;
+                    errorMessage.style.display = 'block';
+                }
+
+                // 3秒后自动隐藏错误消息
+                if (type === 'error') {
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

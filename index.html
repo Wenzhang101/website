@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北京精恒光辉门窗有限公司 - 专业断桥铝门窗与阳光房</title>
+    <meta name="description" content="北京精恒光辉门窗有限公司，专业提供高品质断桥铝门窗、阳光房设计与安装服务。">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo/logo.png" alt="精恒光辉" class="logo-image">
+                <span class="logo-text">精恒光辉</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="home">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="products">产品中心</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="sunroom">阳光房</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="projects">工程案例</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="about">关于我们</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="contact">联系我们</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面容器 -->
+    <div id="page-container">
+        <!-- 首页内容 -->
+        <div id="home-page" class="page active">
+            <!-- 轮播图区域 -->
+            <section class="carousel-section">
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="carousel-slide active">
+                            <div class="slide-content">
+                                <h2 class="slide-title">专业断桥铝门窗</h2>
+                                <p class="slide-description">采用优质断桥铝型材，卓越的隔音隔热性能</p>
+                                <a href="#" class="btn btn-primary" data-page="products">了解更多</a>
+                            </div>
+                            <div class="slide-image">
+                                <img src="images/carousel/window-showcase.jpg" alt="断桥铝门窗展示">
+                                <div class="slide-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h2 class="slide-title">定制阳光房</h2>
+                                <p class="slide-description">专业设计，为您打造理想的休闲空间</p>
+                                <a href="#" class="btn btn-primary" data-page="sunroom">查看案例</a>
+                            </div>
+                            <div class="slide-image">
+                                <img src="images/carousel/sunroom-showcase.jpg" alt="阳光房效果图">
+                                <div class="slide-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <div class="slide-content">
+                                <h2 class="slide-title">品质保证</h2>
+                                <p class="slide-description">10年行业经验，完善的售后服务</p>
+                                <a href="#" class="btn btn-primary" data-page="about">了解我们</a>
+                            </div>
+                            <div class="slide-image">
+                                <img src="images/carousel/quality-showcase.jpg" alt="品质认证展示">
+                                <div class="slide-overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-prev">‹</button>
+                        <button class="carousel-next">›</button>
+                    </div>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 特色服务 -->
+            <section class="features-section">
+                <div class="container">
+                    <h2 class="section-title">我们的优势</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🏭</div>
+                            <h3>专业生产</h3>
+                            <p>拥有先进的生产设备和专业的技术团队，确保产品质量</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3>个性定制</h3>
+                            <p>根据客户需求提供个性化设计方案，满足不同空间需求</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔧</div>
+                            <h3>专业安装</h3>
+                            <p>经验丰富的安装团队，确保施工质量和进度</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📞</div>
+                            <h3>完善售后</h3>
+                            <p>提供完善的售后服务，解决客户后顾之忧</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 快速产品展示 -->
+            <section class="quick-products">
+                <div class="container">
+                    <h2 class="section-title">热门产品</h2>
+                    <div class="quick-products-grid">
+                        <div class="quick-product-card">
+                            <div class="product-image">
+                                <img src="images/products/pingkaichuang-1.jpg" alt="断桥铝平开窗" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>断桥铝平开窗</h3>
+                            <p>气密性优异，隔音隔热效果显著</p>
+                            <a href="#" class="btn btn-secondary" data-page="products">查看详情</a>
+                        </div>
+                        <div class="quick-product-card">
+                            <div class="product-image">
+                                <img src="images/products/tuilamen-1.jpg" alt="断桥铝推拉门" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>断桥铝推拉门</h3>
+                            <p>推拉顺畅，节省空间，美观实用</p>
+                            <a href="#" class="btn btn-secondary" data-page="products">查看详情</a>
+                        </div>
+                        <div class="quick-product-card">
+                            <div class="product-image">
+                                <img src="images/sunroom/leisure-sunroom.jpg" alt="专业阳光房" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>专业阳光房</h3>
+                            <p>打造专属休闲空间，享受阳光生活</p>
+                            <a href="#" class="btn btn-secondary" data-page="sunroom">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 产品中心页面 -->
+        <div id="products-page" class="page">
+            <section class="products-section">
+                <div class="container">
+                    <h2 class="section-title">产品中心</h2>
+                    <p class="section-subtitle">精选优质产品，满足不同空间需求</p>
+
+                    <!-- 第一部分：断桥铝窗系列 -->
+                    <div class="product-category">
+                        <h3 class="category-title">断桥铝窗系列</h3>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="平开窗">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">断桥铝平开窗</h3>
+                                    <p class="product-description">气密性优异，隔音隔热效果显著，适合各种建筑需求。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥680-1280/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('平开窗')">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="推拉窗">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">断桥铝推拉窗</h3>
+                                    <p class="product-description">推拉顺畅，节省空间，适合各种户型需求。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥550-980/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('推拉窗')">查看详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第二部分：断桥铝门系列 -->
+                    <div class="product-category">
+                        <h3 class="category-title">断桥铝门系列</h3>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="平开门">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">断桥铝平开门</h3>
+                                    <p class="product-description">安全耐用，密封性能好，适合入户门使用。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥880-1580/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('平开门')">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="推拉门">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">断桥铝推拉门</h3>
+                                    <p class="product-description">节省空间，推拉顺畅，适合阳台和室内隔断。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥780-1380/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('推拉门')">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="折叠门">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">断桥铝折叠门</h3>
+                                    <p class="product-description">空间利用率高，开启面积大，适合大开口空间。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥980-1880/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('折叠门')">查看详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 第三部分：铝包木系列 -->
+                    <div class="product-category">
+                        <h3 class="category-title">铝包木系列</h3>
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="铝包木窗">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">铝包木窗</h3>
+                                    <p class="product-description">结合木材温馨与铝材耐用，高端住宅首选。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥1500-2800/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('铝包木窗')">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="铝包木门">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">铝包木门</h3>
+                                    <p class="product-description">典雅大气，保温隔音性能卓越。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥1800-3200/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('铝包木门')">查看详情</button>
+                                </div>
+                            </div>
+
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <div class="product-carousel" data-product="铝包木阳光房">
+                                        <div class="carousel-images"></div>
+                                        <div class="carousel-controls">
+                                            <button class="carousel-prev">‹</button>
+                                            <button class="carousel-next">›</button>
+                                        </div>
+                                        <div class="carousel-indicators"></div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <h3 class="product-name">铝包木阳光房</h3>
+                                    <p class="product-description">豪华配置，营造温馨舒适的休闲空间。</p>
+                                    <div class="product-price">
+                                        <span class="price-label">参考价格：</span>
+                                        <span class="price">¥2800-4500/㎡</span>
+                                    </div>
+                                    <button class="btn btn-secondary" onclick="showProductDetail('铝包木阳光房')">查看详情</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 阳光房页面 -->
+        <div id="sunroom-page" class="page">
+            <section class="sunroom-section">
+                <div class="container">
+                    <div class="sunroom-content">
+                        <div class="sunroom-text">
+                            <h2 class="section-title">专业阳光房</h2>
+                            <p class="section-subtitle">打造您的专属休闲空间</p>
+                            <p class="sunroom-description">我们提供专业的阳光房设计与施工服务，采用高品质材料，确保结构安全稳固，为您创造理想的休闲娱乐空间。无论是庭院、露台还是屋顶，我们都能为您量身定制。</p>
+                            <div class="sunroom-features">
+                                <div class="feature">
+                                    <h4>专业设计</h4>
+                                    <p>根据您的需求和空间特点进行个性化设计，充分考虑采光、通风和使用功能</p>
+                                </div>
+                                <div class="feature">
+                                    <h4>优质材料</h4>
+                                    <p>选用高强度铝合金和优质玻璃材料，确保结构安全和使用寿命</p>
+                                </div>
+                                <div class="feature">
+                                    <h4>完善服务</h4>
+                                    <p>从设计到安装，提供一站式服务，专业的施工团队确保工程质量</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sunroom-image">
+                            <img src="images/sunroom/main-showcase.jpg" alt="阳光房效果图" class="large">
+                        </div>
+                    </div>
+
+                    <!-- 阳光房类型 -->
+                    <div class="sunroom-types">
+                        <h3 class="subsection-title">阳光房类型</h3>
+                        <div class="types-grid">
+                            <div class="type-card">
+                                <div class="type-image">
+                                    <img src="images/sunroom/leisure-sunroom.jpg" alt="休闲阳光房">
+                                </div>
+                                <h4>休闲阳光房</h4>
+                                <p>适合家庭休闲娱乐，营造温馨舒适的空间</p>
+                                <span class="type-price">¥1500-2500/㎡</span>
+                            </div>
+                            <div class="type-card">
+                                <div class="type-image">
+                                    <img src="images/sunroom/functional-sunroom.jpg" alt="功能阳光房">
+                                </div>
+                                <h4>功能阳光房</h4>
+                                <p>可用于书房、茶室等功能空间，实用性强</p>
+                                <span class="type-price">¥1800-2800/㎡</span>
+                            </div>
+                            <div class="type-card">
+                                <div class="type-image">
+                                    <img src="images/sunroom/luxury-sunroom.jpg" alt="豪华阳光房">
+                                </div>
+                                <h4>豪华阳光房</h4>
+                                <p>高端配置，智能化系统，享受奢华生活</p>
+                                <span class="type-price">¥2500-3800/㎡</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 关于我们页面 -->
+        <div id="about-page" class="page">
+            <section class="about-section">
+                <div class="container">
+                    <h2 class="section-title">关于精恒光辉</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p>北京精恒光辉门窗有限公司成立于2010年，是一家专业从事断桥铝门窗、阳光房设计、生产、安装和服务的企业。经过十余年的发展，我们已成为北京地区知名的门窗品牌。</p>
+                            <p>我们始终坚持"质量第一、客户至上"的经营理念，凭借先进的生产设备、专业的技术团队和丰富的施工经验，为众多客户提供了优质的门窗产品和完善的服务。公司拥有现代化的生产基地和专业的研发团队，不断引进新技术、新工艺，确保产品始终处于行业领先水平。</p>
+                            <div class="company-values">
+                                <div class="value-item">
+                                    <h4>专业团队</h4>
+                                    <p>拥有10年以上行业经验的专业技术人员，定期接受专业培训</p>
+                                </div>
+                                <div class="value-item">
+                                    <h4>品质保证</h4>
+                                    <p>严格的质量控制体系，确保每一件产品都符合国家标准</p>
+                                </div>
+                                <div class="value-item">
+                                    <h4>完善服务</h4>
+                                    <p>提供从咨询、设计到安装、售后的全方位服务</p>
+                                </div>
+                                <div class="value-item">
+                                    <h4>诚信经营</h4>
+                                    <p>以诚信为本，与客户建立长期稳定的合作关系</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 公司资质 -->
+                    <div class="qualifications">
+                        <h3 class="subsection-title">公司资质</h3>
+                        <div class="qualifications-list">
+                            <div class="qualification-item">
+                                <span class="qualification-icon">📜</span>
+                                <div>
+                                    <h4>ISO9001质量体系认证</h4>
+                                    <p>选用铝材通过国际质量管理体系认证</p>
+                                </div>
+                            </div>
+                            <div class="qualification-item">
+                                <span class="qualification-icon">🏆</span>
+                                <div>
+                                    <h4>行业十佳品牌</h4>
+                                    <p>选用铝材连续多年被评为门窗行业十佳品牌</p>
+                                </div>
+                            </div>
+                            <div class="qualification-item">
+                                <span class="qualification-icon">🔧</span>
+                                <div>
+                                    <h4>专业施工资质</h4>
+                                    <p>拥有专业的门窗安装施工资质</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 工程案例页面 -->
+        <div id="projects-page" class="page">
+            <section class="projects-section">
+                <div class="container">
+                    <h2 class="section-title">工程案例</h2>
+                    <p class="section-subtitle">精选项目展示，见证专业品质</p>
+
+                    <!-- 断桥铝窗工程案例 -->
+                    <div class="project-category">
+                        <h3 class="category-title">断桥铝窗工程案例</h3>
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="images/projects/residential-1.jpg" alt="高档住宅小区案例">
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">朝阳区高档住宅小区</h4>
+                                    <p class="project-description">为高档住宅小区提供断桥铝平开窗，提升建筑整体品质。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">断桥铝平开窗</span>
+                                        <span class="project-area">建筑面积：5000㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <img src="images/projects/residential-2.jpg" alt="商业办公楼">
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">CBD商业办公楼</h4>
+                                    <p class="project-description">为商业办公楼提供断桥铝推拉窗，满足现代办公需求。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">断桥铝推拉窗</span>
+                                        <span class="project-area">建筑面积：8000㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 断桥铝门工程案例 -->
+                    <div class="project-category">
+                        <h3 class="category-title">断桥铝门工程案例</h3>
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div class="placeholder-image">别墅入户门</div>
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">顺义区别墅项目</h4>
+                                    <p class="project-description">为豪华别墅提供定制断桥铝入户门，彰显尊贵品质。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">断桥铝平开门</span>
+                                        <span class="project-area">建筑面积：300㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div class="placeholder-image">商场推拉门</div>
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">大型购物中心</h4>
+                                    <p class="project-description">为购物中心提供断桥铝推拉门，保证通行顺畅。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">断桥铝推拉门</span>
+                                        <span class="project-area">建筑面积：20000㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 铝包木工程案例 -->
+                    <div class="project-category">
+                        <h3 class="category-title">铝包木工程案例</h3>
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div class="placeholder-image">高端会所</div>
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">私人会所项目</h4>
+                                    <p class="project-description">为高端私人会所提供铝包木门窗，营造典雅氛围。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">铝包木窗</span>
+                                        <span class="project-area">建筑面积：1500㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div class="placeholder-image">豪华酒店</div>
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">五星级酒店</h4>
+                                    <p class="project-description">为五星级酒店提供铝包木门窗，提升酒店档次。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">铝包木门</span>
+                                        <span class="project-area">建筑面积：50000㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 阳光房工程案例 -->
+                    <div class="project-category">
+                        <h3 class="category-title">阳光房工程案例</h3>
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div class="placeholder-image">庭院阳光房</div>
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">别墅庭院阳光房</h4>
+                                    <p class="project-description">为别墅庭院打造休闲阳光房，创造舒适户外空间。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">休闲阳光房</span>
+                                        <span class="project-area">建筑面积：25㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="project-card">
+                                <div class="project-image">
+                                    <div class="placeholder-image">露台阳光房</div>
+                                </div>
+                                <div class="project-info">
+                                    <h4 class="project-name">公寓露台阳光房</h4>
+                                    <p class="project-description">为公寓露台设计功能阳光房，扩展使用空间。</p>
+                                    <div class="project-details">
+                                        <span class="project-type">功能阳光房</span>
+                                        <span class="project-area">建筑面积：18㎡</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 联系我们页面 -->
+        <div id="contact-page" class="page">
+            <section class="contact-section">
+                <div class="container">
+                    <h2 class="section-title">联系我们</h2>
+                    <div class="contact-content">
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <h4>公司地址</h4>
+                                <p>北京市通州区西集镇企业发展服务中心2854号</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>联系电话</h4>
+                                <p>13552938222</p>
+                                <p>13718083539</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>电子邮箱</h4>
+                                <p>bjjinghengmc@163.com</p>
+                                <p>649362251@qq.com</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>营业时间</h4>
+                                <p>周一至周日 8:30-18:00</p>
+                            </div>
+                            <div class="contact-item">
+                                <h4>服务区域</h4>
+                                <p>北京市及周边地区</p>
+                            </div>
+                        </div>
+                        <div class="contact-form">
+                            <form class="form" id="contact-form">
+                                <h3>在线咨询</h3>
+                                <div class="form-group">
+                                    <input type="text" placeholder="您的姓名" id="contact-name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" placeholder="联系电话" id="contact-phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" placeholder="电子邮箱" id="contact-email">
+                                </div>
+                                <div class="form-group">
+                                    <select id="contact-type">
+                                        <option value="">请选择咨询类型</option>
+                                        <option value="断桥铝门窗">断桥铝门窗</option>
+                                        <option value="阳光房">阳光房</option>
+                                        <option value="其他产品">其他产品</option>
+                                        <option value="售后服务">售后服务</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <textarea placeholder="详细咨询内容" id="contact-message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">提交咨询</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">精恒光辉</span>
+                    <p>专业门窗解决方案提供商</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>产品服务</h5>
+                        <a href="#" data-page="products">断桥铝门窗</a>
+                        <a href="#" data-page="sunroom">阳光房</a>
+                        <a href="#">定制服务</a>
+                    </div>
+                    <div class="link-group">
+                        <h5>关于我们</h5>
+                        <a href="#" data-page="about">公司简介</a>
+                        <a href="#">资质认证</a>
+                        <a href="#" data-page="projects">工程案例</a>
+                    </div>
+                    <div class="link-group">
+                        <h5>联系我们</h5>
+                        <a href="#" data-page="contact">联系方式</a>
+                        <a href="#">在线咨询</a>
+                        <a href="#">服务网点</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 北京精恒光辉门窗有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 模态框 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title">客户详情</h3>
+            <div id="modal-body">
+                <!-- 详情内容将通过JavaScript动态填充 -->
+            </div>
+        </div>
+    </div>
+
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

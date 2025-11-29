@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统 - 客户信息管理</title>
+    <meta name="description" content="北京精恒光辉门窗有限公司后台管理系统">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f7;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            background: white;
+            border-bottom: 1px solid #e8e8ed;
+            padding: 0 20px;
+        }
+
+        .admin-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .admin-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .admin-logo .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0071e3;
+        }
+
+        .admin-user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logout-btn {
+            background: #ff3b30;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .admin-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .admin-panel {
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .panel-header {
+            padding: 30px;
+            border-bottom: 1px solid #e8e8ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-header h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #0071e3;
+            color: white;
+        }
+
+        .data-table-container {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e8e8ed;
+        }
+
+        .data-table th {
+            background: #f5f5f7;
+            font-weight: 600;
+            color: #1d1d1f;
+            font-size: 14px;
+        }
+
+        .data-table td {
+            color: #424245;
+            font-size: 14px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+        }
+
+        .btn-danger {
+            background: #ff3b30;
+            color: white;
+            border: none;
+        }
+
+        .panel-footer {
+            padding: 20px 30px;
+            background: #f5f5f7;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stats {
+            color: #86868b;
+            font-size: 14px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #86868b;
+        }
+
+        .empty-state .icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .stat-card {
+            background: #f5f5f7;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0071e3;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #86868b;
+            font-size: 14px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #86868b;
+        }
+
+        .error-message {
+            background: #ff3b30;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="admin-header">
+        <nav class="admin-nav">
+            <div class="admin-logo">
+                <span class="logo-text">精恒光辉</span>
+                <span style="color: #86868b; font-size: 14px;">后台管理系统</span>
+            </div>
+            <div class="admin-user">
+                <div class="user-info">
+                    <div class="user-name" id="current-user">管理员</div>
+                    <div class="user-role">系统管理员</div>
+                </div>
+                <button class="logout-btn" id="logout-btn">
+                    <span>退出登录</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="admin-main">
+        <!-- 客户信息管理面板 -->
+        <div class="admin-panel">
+            <div class="panel-header">
+                <h2>客户信息管理</h2>
+                <div class="panel-actions">
+                    <button class="btn btn-primary" id="refresh-data">
+                        <span>刷新数据</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="data-table-container">
+                <table class="data-table" id="customer-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>姓名</th>
+                            <th>电话</th>
+                            <th>邮箱</th>
+                            <th>咨询类型</th>
+                            <th>咨询时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customer-table-body">
+                        <tr>
+                            <td colspan="7" class="loading">
+                                正在加载数据...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-footer">
+                <div class="stats">
+                    <span>总计: <span id="total-count">0</span> 条记录</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据统计面板 -->
+        <div class="admin-panel">
+            <div class="panel-header">
+                <h2>数据统计</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-customers">0</div>
+                    <div class="stat-label">总客户数</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="today-customers">0</div>
+                    <div class="stat-label">今日新增</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="window-customers">0</div>
+                    <div class="stat-label">门窗咨询</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="sunroom-customers">0</div>
+                    <div class="stat-label">阳光房咨询</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="api-client.js"></script>
+    <script>
+        class AdminManager {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                // 检查登录状态
+                if (!apiClient.isLoggedIn()) {
+                    window.location.href = 'admin-login-new.html';
+                    return;
+                }
+
+                this.bindEvents();
+                this.loadData();
+            }
+
+            bindEvents() {
+                // 刷新数据按钮
+                document.getElementById('refresh-data').addEventListener('click', () => {
+                    this.loadData();
+                });
+
+                // 退出登录按钮
+                document.getElementById('logout-btn').addEventListener('click', () => {
+                    this.logout();
+                });
+            }
+
+            async loadData() {
+                try {
+                    // 显示加载状态
+                    this.showLoading();
+
+                    // 同时加载客户数据和统计信息
+                    const [customersResponse, statsResponse] = await Promise.all([
+                        apiClient.getCustomers(),
+                        apiClient.getStats()
+                    ]);
+
+                    if (customersResponse.success && statsResponse.success) {
+                        this.renderCustomerTable(customersResponse.data);
+                        this.updateStatistics(statsResponse.data);
+                    } else {
+                        throw new Error('数据加载失败');
+                    }
+
+                } catch (error) {
+                    console.error('加载数据失败:', error);
+                    this.showError('数据加载失败: ' + error.message);
+                }
+            }
+
+            renderCustomerTable(customers) {
+                const tableBody = document.getElementById('customer-table-body');
+                const totalCount = document.getElementById('total-count');
+
+                tableBody.innerHTML = '';
+                totalCount.textContent = customers.length;
+
+                if (customers.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; color: #86868b; padding: 40px;">
+                                <div class="empty-state">
+                                    <div class="icon">📭</div>
+                                    <div>暂无客户数据</div>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                customers.forEach(customer => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${customer.id}</td>
+                        <td>${this.escapeHtml(customer.name)}</td>
+                        <td>${this.escapeHtml(customer.phone)}</td>
+                        <td>${customer.email ? this.escapeHtml(customer.email) : '-'}</td>
+                        <td>${customer.type ? this.escapeHtml(customer.type) : '-'}</td>
+                        <td>${this.escapeHtml(customer.timestamp)}</td>
+                        <td class="action-buttons">
+                            <button class="btn btn-small" onclick="adminManager.viewCustomer(${customer.id})">查看</button>
+                            <button class="btn btn-small btn-danger" onclick="adminManager.deleteCustomer(${customer.id})">删除</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            updateStatistics(stats) {
+                document.getElementById('total-customers').textContent = stats.total || 0;
+                document.getElementById('today-customers').textContent = stats.today || 0;
+                document.getElementById('window-customers').textContent = stats.windows || 0;
+                document.getElementById('sunroom-customers').textContent = stats.sunrooms || 0;
+            }
+
+            async viewCustomer(id) {
+                try {
+                    const customers = await apiClient.getCustomers();
+                    const customer = customers.data.find(c => c.id === id);
+
+                    if (customer) {
+                        this.showCustomerModal(customer);
+                    } else {
+                        alert('未找到客户信息');
+                    }
+                } catch (error) {
+                    console.error('查看客户详情失败:', error);
+                    alert('获取客户详情失败: ' + error.message);
+                }
+            }
+
+            showCustomerModal(customer) {
+                // 创建模态框
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 1000;
+                `;
+
+                const modalContent = document.createElement('div');
+                modalContent.className = 'modal-content';
+                modalContent.style.cssText = `
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    max-width: 600px;
+                    width: 90%;
+                    max-height: 80vh;
+                    overflow-y: auto;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                `;
+
+                modalContent.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="margin: 0; color: #1d1d1f;">客户详细信息</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #86868b;">&times;</button>
+                    </div>
+                    <div style="display: grid; gap: 15px;">
+                        <div>
+                            <strong>姓名：</strong>${this.escapeHtml(customer.name)}
+                        </div>
+                        <div>
+                            <strong>电话：</strong>${this.escapeHtml(customer.phone)}
+                        </div>
+                        <div>
+                            <strong>邮箱：</strong>${customer.email ? this.escapeHtml(customer.email) : '未填写'}
+                        </div>
+                        <div>
+                            <strong>咨询类型：</strong>${customer.type ? this.escapeHtml(customer.type) : '未选择'}
+                        </div>
+                        <div>
+                            <strong>提交时间：</strong>${this.escapeHtml(customer.timestamp)}
+                        </div>
+                        <div>
+                            <strong>咨询内容：</strong>
+                            <div style="margin-top: 8px; padding: 15px; background: #f5f5f7; border-radius: 8px; line-height: 1.5;">
+                                ${customer.message ? this.escapeHtml(customer.message) : '无咨询内容'}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                modal.appendChild(modalContent);
+                document.body.appendChild(modal);
+
+                // 点击模态框外部关闭
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+
+                // ESC键关闭
+                const handleEsc = (e) => {
+                    if (e.key === 'Escape') {
+                        modal.remove();
+                        document.removeEventListener('keydown', handleEsc);
+                    }
+                };
+                document.addEventListener('keydown', handleEsc);
+            }
+
+            async deleteCustomer(id) {
+                if (confirm('确定要删除这条客户记录吗？')) {
+                    try {
+                        const result = await apiClient.deleteCustomer(id);
+
+                        if (result.success) {
+                            alert('客户记录已删除');
+                            this.loadData(); // 重新加载数据
+                        } else {
+                            throw new Error(result.error || '删除失败');
+                        }
+                    } catch (error) {
+                        console.error('删除客户失败:', error);
+                        alert('删除失败: ' + error.message);
+                    }
+                }
+            }
+
+            logout() {
+                if (confirm('确定要退出登录吗？')) {
+                    apiClient.removeToken();
+                    window.location.href = 'admin-login-new.html';
+                }
+            }
+
+            showLoading() {
+                const tableBody = document.getElementById('customer-table-body');
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="loading">
+                            正在加载数据...
+                        </td>
+                    </tr>
+                `;
+            }
+
+            showError(message) {
+                const tableBody = document.getElementById('customer-table-body');
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="error-message">
+                                ${message}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }
+
+            escapeHtml(text) {
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+        }
+
+        // 全局初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            window.adminManager = new AdminManager();
+        });
+    </script>
+</body>
+</html>

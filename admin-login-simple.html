@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理系统 - 登录</title>
+    <meta name="description" content="北京精恒光辉门窗有限公司后台管理系统">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background-color: #ffffff;
+        }
+
+        .login-body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0071e3;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: #86868b;
+            font-size: 14px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            padding: 15px;
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0071e3;
+            box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #86868b;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #424245;
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d2d2d7;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark {
+            background: #0071e3;
+            border-color: #0071e3;
+        }
+
+        .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .login-btn {
+            padding: 15px;
+            background: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            background: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 113, 227, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:disabled {
+            background: #d2d2d7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e8e8ed;
+        }
+
+        .login-footer p {
+            color: #86868b;
+            font-size: 12px;
+        }
+
+        .error-message {
+            background: #ff3b30;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+            text-align: center;
+            display: none;
+        }
+
+        .login-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: 1;
+        }
+
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <span class="logo-text">精恒光辉</span>
+                </div>
+                <h1 class="login-title">后台管理系统</h1>
+                <p class="login-subtitle">请输入管理员账号和密码</p>
+            </div>
+
+            <form class="login-form" id="login-form">
+                <div class="form-group">
+                    <label for="username">管理员账号</label>
+                    <input type="text" id="username" name="username" placeholder="请输入管理员账号" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" placeholder="请输入密码" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me">
+                        <span class="checkmark"></span>
+                        记住我
+                    </label>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">登录</span>
+                    <span class="btn-loading" style="display: none;">登录中...</span>
+                </button>
+
+                <div class="login-footer">
+                    <p>如有问题请联系系统管理员</p>
+                </div>
+            </form>
+
+            <div class="error-message" id="error-message">
+                账号或密码错误，请重新输入
+            </div>
+        </div>
+
+        <div class="login-background">
+            <div class="background-overlay"></div>
+        </div>
+    </div>
+
+    <script>
+        // 管理员账号配置
+        const ADMIN_CONFIG = {
+            username: 'admin',
+            password: 'jingheng2024',
+            sessionKey: 'admin_logged_in'
+        };
+
+        // 登录管理函数
+        function handleLogin() {
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const rememberMe = document.getElementById('remember-me').checked;
+
+            // 显示加载状态
+            setLoading(true);
+
+            // 模拟网络延迟
+            setTimeout(() => {
+                if (validateCredentials(username, password)) {
+                    loginSuccess(username, rememberMe);
+                } else {
+                    loginFailed();
+                }
+                setLoading(false);
+            }, 1000);
+        }
+
+        function validateCredentials(username, password) {
+            return username === ADMIN_CONFIG.username && password === ADMIN_CONFIG.password;
+        }
+
+        function loginSuccess(username, rememberMe) {
+            // 创建会话
+            const sessionData = {
+                username: username,
+                loginTime: new Date().toISOString(),
+                rememberMe: rememberMe
+            };
+
+            // 存储会话信息
+            if (rememberMe) {
+                localStorage.setItem(ADMIN_CONFIG.sessionKey, JSON.stringify(sessionData));
+            } else {
+                sessionStorage.setItem(ADMIN_CONFIG.sessionKey, JSON.stringify(sessionData));
+            }
+
+            // 显示成功消息
+            showMessage('登录成功，正在跳转...', 'success');
+
+            // 跳转到后台管理页面
+            setTimeout(() => {
+                window.location.href = 'admin.html';
+            }, 1000);
+        }
+
+        function loginFailed() {
+            showMessage('账号或密码错误，请重新输入', 'error');
+
+            // 清空密码框
+            document.getElementById('password').value = '';
+            document.getElementById('password').focus();
+        }
+
+        function setLoading(loading) {
+            const loginBtn = document.querySelector('.login-btn');
+            const btnText = document.querySelector('.btn-text');
+            const btnLoading = document.querySelector('.btn-loading');
+
+            if (loading) {
+                loginBtn.disabled = true;
+                btnText.style.display = 'none';
+                btnLoading.style.display = 'inline';
+            } else {
+                loginBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+            }
+        }
+
+        function showMessage(message, type = 'error') {
+            const errorMessage = document.getElementById('error-message');
+
+            if (type === 'success') {
+                errorMessage.style.background = '#34c759';
+            } else {
+                errorMessage.style.background = '#ff3b30';
+            }
+
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+
+            // 3秒后自动隐藏
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+
+            // 表单提交事件
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleLogin();
+            });
+
+            // 密码框回车键支持
+            document.getElementById('password').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleLogin();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

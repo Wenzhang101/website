@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加测试数据</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f7;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background: #0071e3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>添加测试数据</h1>
+
+        <div style="text-align: center;">
+            <button class="btn" onclick="addTestData()">添加测试客户数据</button>
+            <button class="btn" onclick="checkData()">检查当前数据</button>
+            <button class="btn" onclick="clearData()">清空所有数据</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function addTestData() {
+            const testCustomers = [
+                {
+                    id: '1',
+                    name: '张三',
+                    phone: '13800138001',
+                    email: 'zhangsan@example.com',
+                    type: '断桥铝门窗',
+                    message: '我想咨询一下断桥铝门窗的价格和安装时间。',
+                    timestamp: new Date().toLocaleString('zh-CN')
+                },
+                {
+                    id: '2',
+                    name: '李四',
+                    phone: '13900139002',
+                    email: 'lisi@example.com',
+                    type: '阳光房',
+                    message: '我家阳台想搭建一个阳光房，请问有什么推荐方案？',
+                    timestamp: new Date().toLocaleString('zh-CN')
+                },
+                {
+                    id: '3',
+                    name: '王五',
+                    phone: '13600136003',
+                    email: '',
+                    type: '断桥铝门窗',
+                    message: '需要更换家里的窗户，请报价。',
+                    timestamp: new Date().toLocaleString('zh-CN')
+                }
+            ];
+
+            // 保存到本地存储
+            localStorage.setItem('jingheng_customers', JSON.stringify(testCustomers));
+
+            showResult('测试数据添加成功！现在有 ' + testCustomers.length + ' 条客户记录。', 'success');
+        }
+
+        function checkData() {
+            const stored = localStorage.getItem('jingheng_customers');
+            if (stored) {
+                const customers = JSON.parse(stored);
+                showResult('当前有 ' + customers.length + ' 条客户记录。', 'info');
+            } else {
+                showResult('没有找到客户数据。', 'info');
+            }
+        }
+
+        function clearData() {
+            if (confirm('确定要清空所有客户数据吗？')) {
+                localStorage.removeItem('jingheng_customers');
+                showResult('所有客户数据已清空。', 'success');
+            }
+        }
+
+        function showResult(message, type) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+
+        // 页面加载时检查数据
+        document.addEventListener('DOMContentLoaded', function() {
+            checkData();
+        });
+    </script>
+</body>
+</html>
